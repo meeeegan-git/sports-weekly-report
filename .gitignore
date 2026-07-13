@@ -1,0 +1,7 @@
+# 临时文件
+*.pyc
+__pycache__/
+.DS_Store
+
+# IDE 配置（Codebuddy 项目数据不提交）
+.codebuddy/

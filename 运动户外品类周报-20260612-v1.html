@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运动户外品类周报 - 2026.06.12</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
+.container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+.header { background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); color: white; padding: 30px 40px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(26,115,232,0.3); }
+.header { position: relative; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.85; }
+.version-switch { position: absolute; top: 20px; right: 30px; display: flex; gap: 8px; align-items: center; }
+.version-btn { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 8px 16px; border-radius: 20px; font-size: 13px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+.version-btn:hover { background: rgba(255,255,255,0.3); }
+.version-btn.active { background: white; color: #1a73e8; border-color: white; font-weight: 600; }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.overview-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.card-label { font-size: 13px; color: #888; margin-bottom: 8px; }
+.card-value { font-size: 24px; font-weight: 700; color: #1a73e8; }
+.card.masked .card-value { color: #666; font-size: 18px; }
+.category-section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.category-header { margin-bottom: 16px; }
+.category-header h3 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; padding-left: 12px; border-left: 4px solid #1a73e8; }
+.category-metrics { display: flex; flex-wrap: wrap; gap: 10px; }
+.metric-badge { background: #f0f4ff; color: #444; padding: 6px 14px; border-radius: 20px; font-size: 12px; white-space: nowrap; }
+.metric-badge b { color: #1a73e8; font-weight: 600; }
+.table-wrapper { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead { background: #f8fafc; }
+th { padding: 12px 10px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e8ecf0; white-space: nowrap; }
+td { padding: 10px; border-bottom: 1px solid #f0f2f5; white-space: nowrap; }
+tr:hover { background: #f8fafc; }
+.rank-cell { font-weight: 700; color: #1a73e8; text-align: center; width: 40px; }
+.shop-cell { max-width: 140px; overflow: hidden; text-overflow: ellipsis; }
+.product-cell { min-width: 100px; }
+.product-tag { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; box-shadow: 0 2px 4px rgba(102,126,234,0.3); margin: 2px 2px; }
+.range-tag { display: inline-block; padding: 3px 10px; border-radius: 10px; font-size: 12px; font-weight: 600; }
+.range-green { background: #e6f7e6; color: #1b8c1b; }
+.range-orange { background: #fff3e0; color: #e65100; }
+th.highlight-col { background: #e8f0fe; color: #1a73e8; }
+td.col-cost { font-weight: 700; color: #d32f2f; font-size: 14px; }
+td.col-gmv { font-weight: 700; color: #1b8c1b; font-size: 14px; }
+td.col-roi { font-weight: 700; color: #e65100; font-size: 14px; }
+
+.material-cell { width: 80px; text-align: center; position: relative; }
+.video-thumb { 
+    width: 60px; height: 60px; border-radius: 8px; overflow: hidden; 
+    position: relative; cursor: pointer; display: inline-block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12); transition: transform 0.2s;
+}
+.video-thumb:hover { transform: scale(1.05); }
+.video-thumb .thumb-video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.video-thumb .play-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.5); color: white; width: 24px; height: 24px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; transition: opacity 0.2s;
+}
+.video-thumb:hover .play-icon { opacity: 0; }
+.img-thumb {
+    width: 60px; height: 60px; border-radius: 8px; overflow: hidden;
+    display: inline-block; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.img-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.video-modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center;
+}
+.video-modal.active { display: flex; }
+.video-modal-content {
+    background: #000; border-radius: 12px; overflow: hidden; max-width: 480px; 
+    width: 90%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.video-modal-content video { width: 100%; max-height: 80vh; display: block; }
+.video-modal-close {
+    position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.9);
+    border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    z-index: 1001;
+}
+
+.footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+.footer a { color: #1a73e8; text-decoration: underline; }
+@media (max-width: 768px) {
+  .overview-cards { grid-template-columns: repeat(2, 1fr); }
+  .category-metrics { gap: 6px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>🏃 运动户外品类周报</h1>
+<p>数据周期：2026年6月6日 - 2026年6月12日 | 数据来源：DPA投放数据</p>
+<div class="version-switch">
+<button class="version-btn active" onclick="switchTab('full')">📈 完整版</button>
+<button class="version-btn" onclick="switchTab('masked')">📊 脱敏版</button>
+</div>
+</div>
+
+<div class="tab-content" id="masked">
+<div class="overview-cards">
+<div class="card"><div class="card-label">日均消耗</div><div class="card-value">¥51.3万</div></div>
+<div class="card"><div class="card-label">日均下单金额</div><div class="card-value"><span class='range-tag range-green' style='font-size:16px;'>100-200万</span></div></div>
+<div class="card"><div class="card-label">下单ROI</div><div class="card-value"><span class='range-tag range-orange' style='font-size:16px;'>4-5</span></div></div>
+<div class="card"><div class="card-label">CTR</div><div class="card-value">2.11%</div></div>
+<div class="card"><div class="card-label">综合转化率</div><div class="card-value">5.79%</div></div>
+<div class="card"><div class="card-label">竞价CPM</div><div class="card-value">¥40.34</div></div>
+<div class="card"><div class="card-label">下单单价</div><div class="card-value">¥140.2</div></div>
+<div class="card"><div class="card-label">3秒完播率</div><div class="card-value">43.63%</div></div>
+</div>
+<div class="category-section">
+<div class="category-header">
+<h3>运动鞋服</h3>
+<div class="category-metrics">
+<span class="metric-badge">投放商品数: <b>3694</b></span>
+<span class="metric-badge">日均消耗: <b>¥26.6万</b></span>
+<span class="metric-badge">消耗占比: <b>51.8%</b></span>
+<span class="metric-badge">日均GMV: <b><span class='range-tag range-green'>100-200万</span></b></span>
+<span class="metric-badge">GMV占比: <b>-</b></span>
+<span class="metric-badge">整体ROI: <b><span class='range-tag range-orange'>5-6</span></b></span>
+<span class="metric-badge">平均CTR: <b>6.05%</b></span>
+<span class="metric-badge">平均CVR: <b>14.10%</b></span>
+<span class="metric-badge">平均CPM: <b>¥209</b></span>
+</div>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>排名</th><th>视频号</th><th>商品名称</th><th class="highlight-col">日均消耗</th><th>消耗占比</th>
+<th class="highlight-col">日均GMV</th><th>GMV占比</th><th>下单单价</th><th>CTR</th><th>CVR</th>
+<th>CPM</th><th class="highlight-col">ROI</th><th>3秒完播率</th><th>素材</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="rank-cell">1</td>
+<td class="shop-cell" title="SIINSIIN星钥品牌">SIINSIIN星钥品牌</td>
+<td class="product-cell"><span class='product-tag'>直筒裤夏</span></td>
+<td class="col-cost">¥3.2万</td>
+<td>6.28%</td>
+<td class="col-gmv"><span class='range-tag range-green'>10-20万</span></td>
+<td>7.13%</td>
+<td>¥270</td>
+<td>2.61%</td>
+<td>7.74%</td>
+<td>¥121.80</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>43.20%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3amap2aaabuaatrax3nvbwaye7ubqb7ka.f0.mp4?dis_k=17b401533542c583f41961563c49e496&dis_t=1780563028&m=275e43f248f29bea9943ddacca6e1ed6&sha256=dd6d1cdba70922451fd10cf0e97028ba18c8b0ccf42069bdddcd3ac285779b83">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3amap2aaabuaatrax3nvbwaye7ubqb7ka.f0.mp4?dis_k=17b401533542c583f41961563c49e496&dis_t=1780563028&m=275e43f248f29bea9943ddacca6e1ed6&sha256=dd6d1cdba70922451fd10cf0e97028ba18c8b0ccf42069bdddcd3ac285779b83" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">2</td>
+<td class="shop-cell" title="UTO悠途户外装备">UTO悠途户外装备</td>
+<td class="product-cell"><span class='product-tag'>速干T恤女</span></td>
+<td class="col-cost">¥1.8万</td>
+<td>3.49%</td>
+<td class="col-gmv"><span class='range-tag range-green'>5-10万</span></td>
+<td>2.92%</td>
+<td>¥146</td>
+<td>3.20%</td>
+<td>5.05%</td>
+<td>¥69.40</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>39.15%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53yiadqaaaviajrni7rnvbvqqehdbaaoca.f0.mp4?dis_k=9dc30389e8ee9d5fcb50377d413a4263&dis_t=1780458180&m=eb7220d1e0e7546833b0a1dca17c8d5e&sha256=81928be9b59570e4e209797a0e0609b4b798892d6e3ddd10bed6632ab52cf30e">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53yiadqaaaviajrni7rnvbvqqehdbaaoca.f0.mp4?dis_k=9dc30389e8ee9d5fcb50377d413a4263&dis_t=1780458180&m=eb7220d1e0e7546833b0a1dca17c8d5e&sha256=81928be9b59570e4e209797a0e0609b4b798892d6e3ddd10bed6632ab52cf30e" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">3</td>
+<td class="shop-cell" title="KAILASFUGA">KAILASFUGA</td>
+<td class="product-cell"><span class='product-tag'>野跑鞋男</span></td>
+<td class="col-cost">¥1.6万</td>
+<td>3.18%</td>
+<td class="col-gmv"><span class='range-tag range-green'>5-10万</span></td>
+<td>4.59%</td>
+<td>¥1,248</td>
+<td>2.91%</td>
+<td>0.94%</td>
+<td>¥60.76</td>
+<td class="col-roi"><span class='range-tag range-orange'>5-6</span></td>
+<td>42.91%</td>
+<td class="material-cell">
+                    <div class="img-thumb">
+                        <img src="http://pgdt.gtimg.cn/141/20204/snscosdownload/SZ/reserved/6a20d7f30009dff02e4a762d86f801150000008d00004eec?ck=913c304729914c2aaa98987999573f56&m=913c304729914c2aaa98987999573f56&sha256=8dfcf74d33e7ae63904047450c4247e0c2d81651f4737e479f3417d37ca80cc9" alt="素材">
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">4</td>
+<td class="shop-cell" title="FlowEnergy">FlowEnergy</td>
+<td class="product-cell"><span class='product-tag'>瑜伽裤运</span></td>
+<td class="col-cost">¥1.0万</td>
+<td>2.00%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.53%</td>
+<td>¥199</td>
+<td>1.64%</td>
+<td>4.47%</td>
+<td>¥47.47</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>26.62%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc32uaxsaabwyafukavb5vbxviephkqc6ka.f0.mp4?dis_k=738c7c89348caae9bd7819046dd78b97&dis_t=1779704697&m=00dd8bc8536399304b764c77cb723de5&sha256=1a26ab0405816120ae6a1fb913472e9de782f92ccc41e9108e49863254a834ab">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc32uaxsaabwyafukavb5vbxviephkqc6ka.f0.mp4?dis_k=738c7c89348caae9bd7819046dd78b97&dis_t=1779704697&m=00dd8bc8536399304b764c77cb723de5&sha256=1a26ab0405816120ae6a1fb913472e9de782f92ccc41e9108e49863254a834ab" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">5</td>
+<td class="shop-cell" title="凯乐石户外">凯乐石户外</td>
+<td class="product-cell"><span class='product-tag'>LT冲锋衣</span></td>
+<td class="col-cost">¥9,045</td>
+<td>1.76%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>2.10%</td>
+<td>¥1,933</td>
+<td>2.31%</td>
+<td>0.82%</td>
+<td>¥75.81</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>37.86%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53ambfcaacayajp4pm4vurqayekebqeuka.f0.mp4?dis_k=d478735846e99843e159d5eb306de3ee&dis_t=1777255945&m=7ea50fb9cfaffc87d74c479cfccd797b&sha256=7242d0be599fd8cfc26df912fc47c595f9100b4a2c552229b651ad7dd0aeb959">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53ambfcaacayajp4pm4vurqayekebqeuka.f0.mp4?dis_k=d478735846e99843e159d5eb306de3ee&dis_t=1777255945&m=7ea50fb9cfaffc87d74c479cfccd797b&sha256=7242d0be599fd8cfc26df912fc47c595f9100b4a2c552229b651ad7dd0aeb959" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">6</td>
+<td class="shop-cell" title="小野和子女装品牌">小野和子女装品牌</td>
+<td class="product-cell"><span class='product-tag'>凉感防晒衬</span></td>
+<td class="col-cost">¥7,496</td>
+<td>1.46%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.61%</td>
+<td>¥188</td>
+<td>2.06%</td>
+<td>8.42%</td>
+<td>¥74.06</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>38.03%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b536yabcaaawyafo4piwfurv5qech3aaeka.f0.mp4?dis_k=a49e0acc577749a5c88a538cb33bbc6a&dis_t=1776830223&m=2af438c32fde553bf5391d3d1f7af6f0&sha256=3997bdb12a82d882f48e90b80a4a332705583deb6a03286b2d9ede855db2af72">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b536yabcaaawyafo4piwfurv5qech3aaeka.f0.mp4?dis_k=a49e0acc577749a5c88a538cb33bbc6a&dis_t=1776830223&m=2af438c32fde553bf5391d3d1f7af6f0&sha256=3997bdb12a82d882f48e90b80a4a332705583deb6a03286b2d9ede855db2af72" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">7</td>
+<td class="shop-cell" title="CAMEL骆驼品牌官方店">CAMEL骆驼品牌官方店</td>
+<td class="product-cell"><span class='product-tag'>原纱防晒衣</span></td>
+<td class="col-cost">¥6,986</td>
+<td>1.36%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.40%</td>
+<td>¥194</td>
+<td>2.90%</td>
+<td>3.69%</td>
+<td>¥49.42</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>29.78%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3pyboiaacwmai3uj34rubq7qe4r7afzca.f0.mp4?dis_k=deb8286ee7a31a1a0ad7647a602b7d52&dis_t=1748593116&sha256=dd40a528ad19cdd1dc596d694cb572208bb7ccb82ca9c908d75d27e87d316ef7&m=3c93dac5b2dcd42ae58d0bb28802a7b9">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3pyboiaacwmai3uj34rubq7qe4r7afzca.f0.mp4?dis_k=deb8286ee7a31a1a0ad7647a602b7d52&dis_t=1748593116&sha256=dd40a528ad19cdd1dc596d694cb572208bb7ccb82ca9c908d75d27e87d316ef7&m=3c93dac5b2dcd42ae58d0bb28802a7b9" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">8</td>
+<td class="shop-cell" title="FILA官方运动店">FILA官方运动店</td>
+<td class="product-cell"><span class='product-tag'>新款防晒凉</span></td>
+<td class="col-cost">¥6,927</td>
+<td>1.35%</td>
+<td class="col-gmv"><span class='range-tag range-green'>5-10万</span></td>
+<td>2.54%</td>
+<td>¥455</td>
+<td>1.93%</td>
+<td>3.76%</td>
+<td>¥43.00</td>
+<td class="col-roi"><span class='range-tag range-orange'>>7</span></td>
+<td>25.78%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">9</td>
+<td class="shop-cell" title="SINSIN服饰品牌">SINSIN服饰品牌</td>
+<td class="product-cell"><span class='product-tag'>色伞裤2</span></td>
+<td class="col-cost">¥6,762</td>
+<td>1.32%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.70%</td>
+<td>¥222</td>
+<td>2.39%</td>
+<td>8.94%</td>
+<td>¥93.57</td>
+<td class="col-roi"><span class='range-tag range-orange'>5-6</span></td>
+<td>25.61%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53rqafiaaaoyalcrqcgnvbvdaeksgaavca.f0.mp4?dis_k=733c82637eff77a3dabe52095aaa7005&dis_t=1778574845&m=8f45a2d2219ab1a8de614f4c1033a2b5">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53rqafiaaaoyalcrqcgnvbvdaeksgaavca.f0.mp4?dis_k=733c82637eff77a3dabe52095aaa7005&dis_t=1778574845&m=8f45a2d2219ab1a8de614f4c1033a2b5" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">10</td>
+<td class="shop-cell" title="FILA总部店">FILA总部店</td>
+<td class="product-cell"><span class='product-tag'>FILA 斐乐官</span></td>
+<td class="col-cost">¥5,825</td>
+<td>1.14%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.56%</td>
+<td>¥643</td>
+<td>1.47%</td>
+<td>18.44%</td>
+<td>¥29.31</td>
+<td class="col-roi"><span class='range-tag range-orange'>5-6</span></td>
+<td>32.58%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">11</td>
+<td class="shop-cell" title="小野和子服饰品牌">小野和子服饰品牌</td>
+<td class="product-cell"><span class='product-tag'>新款防晒口</span></td>
+<td class="col-cost">¥5,553</td>
+<td>1.08%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.78%</td>
+<td>¥83</td>
+<td>2.24%</td>
+<td>11.99%</td>
+<td>¥77.17</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>28.62%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53rycukaaffealkwg47zur7dqeiwhakrka.f0.mp4?dis_k=349a2eae74ac41dec3220709635c13ff&dis_t=1779524457&m=9d8935390b7fef6f4521aff7c7f07231&sha256=b5fe5e09aff06bc06423edd93173787841d59a2c82d503066d0058ec0220fb84">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53rycukaaffealkwg47zur7dqeiwhakrka.f0.mp4?dis_k=349a2eae74ac41dec3220709635c13ff&dis_t=1779524457&m=9d8935390b7fef6f4521aff7c7f07231&sha256=b5fe5e09aff06bc06423edd93173787841d59a2c82d503066d0058ec0220fb84" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">12</td>
+<td class="shop-cell" title="火火品牌外贸服饰">火火品牌外贸服饰</td>
+<td class="product-cell"><span class='product-tag'>速干裤男</span></td>
+<td class="col-cost">¥5,318</td>
+<td>1.04%</td>
+<td class="col-gmv"><span class='range-tag range-green'>5-10万</span></td>
+<td>2.53%</td>
+<td>¥41</td>
+<td>5.45%</td>
+<td>19.95%</td>
+<td>¥45.31</td>
+<td class="col-roi"><span class='range-tag range-orange'>>7</span></td>
+<td>28.05%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">13</td>
+<td class="shop-cell" title="ONEMIX玩觅旗舰店">ONEMIX玩觅旗舰店</td>
+<td class="product-cell"><span class='product-tag'>跑步鞋男</span></td>
+<td class="col-cost">¥5,016</td>
+<td>0.98%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.20%</td>
+<td>¥429</td>
+<td>2.74%</td>
+<td>2.20%</td>
+<td>¥52.00</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>42.12%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3uuaasaaaxmae55kkzjubvjiebgsqacka.f0.mp4?dis_k=49c3ba5ecb760ac5aef615985b386af5&dis_t=1752311226&sha256=1f630c0ea62f758b538589cb84eee2d4deb3f6728d4247f92fdb8ec7de3b1449&m=8a4792d7151238a90a696c0cf61cc623">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3uuaasaaaxmae55kkzjubvjiebgsqacka.f0.mp4?dis_k=49c3ba5ecb760ac5aef615985b386af5&dis_t=1752311226&sha256=1f630c0ea62f758b538589cb84eee2d4deb3f6728d4247f92fdb8ec7de3b1449&m=8a4792d7151238a90a696c0cf61cc623" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">14</td>
+<td class="shop-cell" title="UTO悠途">UTO悠途</td>
+<td class="product-cell"><span class='product-tag'>速干T恤女</span></td>
+<td class="col-cost">¥4,641</td>
+<td>0.90%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.85%</td>
+<td>¥206</td>
+<td>2.54%</td>
+<td>3.06%</td>
+<td>¥41.82</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>41.21%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">15</td>
+<td class="shop-cell" title="FILAFUSION官方店">FILAFUSION官方店</td>
+<td class="product-cell"><span class='product-tag'>老爹鞋女</span></td>
+<td class="col-cost">¥4,609</td>
+<td>0.90%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.49%</td>
+<td>¥537</td>
+<td>1.72%</td>
+<td>1.54%</td>
+<td>¥21.51</td>
+<td class="col-roi"><span class='range-tag range-orange'>6-7</span></td>
+<td>26.01%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">16</td>
+<td class="shop-cell" title="FILA官方店">FILA官方店</td>
+<td class="product-cell"><span class='product-tag'>气凉鞋|</span></td>
+<td class="col-cost">¥4,593</td>
+<td>0.89%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.61%</td>
+<td>¥526</td>
+<td>2.46%</td>
+<td>1.63%</td>
+<td>¥31.44</td>
+<td class="col-roi"><span class='range-tag range-orange'>>7</span></td>
+<td>28.96%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">17</td>
+<td class="shop-cell" title="adidas官方旗舰店">adidas官方旗舰店</td>
+<td class="product-cell"><span class='product-tag'>长袖套装男</span></td>
+<td class="col-cost">¥4,392</td>
+<td>0.86%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.01%</td>
+<td>¥329</td>
+<td>1.88%</td>
+<td>2.72%</td>
+<td>¥34.83</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>27.32%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">18</td>
+<td class="shop-cell" title="ONEMIX玩觅官方旗舰店">ONEMIX玩觅官方旗舰店</td>
+<td class="product-cell"><span class='product-tag'>运动鞋女</span></td>
+<td class="col-cost">¥4,288</td>
+<td>0.84%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.95%</td>
+<td>¥453</td>
+<td>2.26%</td>
+<td>1.68%</td>
+<td>¥37.00</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>41.75%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">19</td>
+<td class="shop-cell" title="凯乐石鞋靴店">凯乐石鞋靴店</td>
+<td class="product-cell"><span class='product-tag'>跑山鞋K</span></td>
+<td class="col-cost">¥4,142</td>
+<td>0.81%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.97%</td>
+<td>¥1,411</td>
+<td>2.97%</td>
+<td>0.47%</td>
+<td>¥39.83</td>
+<td class="col-roi"><span class='range-tag range-orange'>4-5</span></td>
+<td>42.21%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc344ajeaaalyapj5yv75vbvzyesltqbesa.f0.mp4?dis_k=2995b811e9d50989ba530a07f06ca7c3&dis_t=1779787451&m=aad317ac24ca297a09f53535a3564228">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc344ajeaaalyapj5yv75vbvzyesltqbesa.f0.mp4?dis_k=2995b811e9d50989ba530a07f06ca7c3&dis_t=1779787451&m=aad317ac24ca297a09f53535a3564228" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">20</td>
+<td class="shop-cell" title="FILA斐乐广州店">FILA斐乐广州店</td>
+<td class="product-cell"><span class='product-tag'>短袖T恤F</span></td>
+<td class="col-cost">¥3,935</td>
+<td>0.77%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.16%</td>
+<td>¥476</td>
+<td>1.72%</td>
+<td>2.88%</td>
+<td>¥38.29</td>
+<td class="col-roi"><span class='range-tag range-orange'>6-7</span></td>
+<td>24.36%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="category-section">
+<div class="category-header">
+<h3>运动用品</h3>
+<div class="category-metrics">
+<span class="metric-badge">投放商品数: <b>3187</b></span>
+<span class="metric-badge">日均消耗: <b>¥19.1万</b></span>
+<span class="metric-badge">消耗占比: <b>37.2%</b></span>
+<span class="metric-badge">日均GMV: <b><span class='range-tag range-green'>50-100万</span></b></span>
+<span class="metric-badge">GMV占比: <b>-</b></span>
+<span class="metric-badge">整体ROI: <b><span class='range-tag range-orange'>2-3</span></b></span>
+<span class="metric-badge">平均CTR: <b>5.66%</b></span>
+<span class="metric-badge">平均CVR: <b>13.78%</b></span>
+<span class="metric-badge">平均CPM: <b>¥179</b></span>
+</div>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>排名</th><th>视频号</th><th>商品名称</th><th class="highlight-col">日均消耗</th><th>消耗占比</th>
+<th class="highlight-col">日均GMV</th><th>GMV占比</th><th>下单单价</th><th>CTR</th><th>CVR</th>
+<th>CPM</th><th class="highlight-col">ROI</th><th>3秒完播率</th><th>素材</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="rank-cell">1</td>
+<td class="shop-cell" title="康舒护具">康舒护具</td>
+<td class="product-cell"><span class='product-tag'>护膝关</span></td>
+<td class="col-cost">¥2.4万</td>
+<td>4.71%</td>
+<td class="col-gmv"><span class='range-tag range-green'>5-10万</span></td>
+<td>2.65%</td>
+<td>¥96</td>
+<td>1.15%</td>
+<td>5.40%</td>
+<td>¥26.25</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>55.80%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">2</td>
+<td class="shop-cell" title="懒人运动筋膜环">懒人运动筋膜环</td>
+<td class="product-cell"><span class='product-tag'>运动筋膜环</span></td>
+<td class="col-cost">¥1.4万</td>
+<td>2.75%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>2.20%</td>
+<td>¥86</td>
+<td>1.95%</td>
+<td>6.54%</td>
+<td>¥33.88</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>55.04%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">3</td>
+<td class="shop-cell" title="OES深弧运动健腹">OES深弧运动健腹</td>
+<td class="product-cell"><span class='product-tag'>ES健腹机</span></td>
+<td class="col-cost">¥1.4万</td>
+<td>2.66%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>2.16%</td>
+<td>¥329</td>
+<td>1.22%</td>
+<td>2.51%</td>
+<td>¥36.30</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>44.70%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">4</td>
+<td class="shop-cell" title="太力户外帐篷店">太力户外帐篷店</td>
+<td class="product-cell"><span class='product-tag'>充气帐篷2</span></td>
+<td class="col-cost">¥1.2万</td>
+<td>2.32%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.28%</td>
+<td>¥1,595</td>
+<td>2.54%</td>
+<td>0.50%</td>
+<td>¥89.49</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>41.83%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53aicl6aaem4acmaolk5ur4aqex4bajp2a.f0.mp4?dis_k=4057e936115761ebcf210ce91c5bd465&dis_t=1775213768&m=9789f2756b54bdeb17d827dc273a2aed&sha256=4d9bcb2dbab06c1bcd3f7d32f26ef22ee9ad74cdeab0b9a18a2a1b9c30d40cb3">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53aicl6aaem4acmaolk5ur4aqex4bajp2a.f0.mp4?dis_k=4057e936115761ebcf210ce91c5bd465&dis_t=1775213768&m=9789f2756b54bdeb17d827dc273a2aed&sha256=4d9bcb2dbab06c1bcd3f7d32f26ef22ee9ad74cdeab0b9a18a2a1b9c30d40cb3" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">5</td>
+<td class="shop-cell" title="康舒运动店">康舒运动店</td>
+<td class="product-cell"><span class='product-tag'>髌骨带男夏季专业</span></td>
+<td class="col-cost">¥1.1万</td>
+<td>2.18%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>1.31%</td>
+<td>¥111</td>
+<td>2.04%</td>
+<td>8.63%</td>
+<td>¥81.53</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>33.39%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">6</td>
+<td class="shop-cell" title="专注护腰三十年">专注护腰三十年</td>
+<td class="product-cell"><span class='product-tag'>ES腰部</span></td>
+<td class="col-cost">¥7,282</td>
+<td>1.42%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.99%</td>
+<td>¥68</td>
+<td>1.41%</td>
+<td>7.79%</td>
+<td>¥26.80</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>39.38%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53baabeaaa5iaomexrenubucaecieaaesa.f0.mp4?dis_k=dac9eb31b2965c3871a7eb53f4c39e7b&dis_t=1780660909&m=237b54a1f6d2f113094a503362290636&sha256=ffe4c9f6f3a00ed4af5982feee465fcde1c5802d31737aa197e54b5a62a5f2b1">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53baabeaaa5iaomexrenubucaecieaaesa.f0.mp4?dis_k=dac9eb31b2965c3871a7eb53f4c39e7b&dis_t=1780660909&m=237b54a1f6d2f113094a503362290636&sha256=ffe4c9f6f3a00ed4af5982feee465fcde1c5802d31737aa197e54b5a62a5f2b1" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">7</td>
+<td class="shop-cell" title="兰老师-青少年体育">兰老师-青少年体育</td>
+<td class="product-cell"><span class='product-tag'>学生跳绳考</span></td>
+<td class="col-cost">¥6,617</td>
+<td>1.29%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.52%</td>
+<td>¥31</td>
+<td>1.61%</td>
+<td>8.83%</td>
+<td>¥26.95</td>
+<td class="col-roi"><span class='range-tag range-orange'>1-2</span></td>
+<td>41.13%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">8</td>
+<td class="shop-cell" title="OES专注腰部护理">OES专注腰部护理</td>
+<td class="product-cell"><span class='product-tag'>腰部</span></td>
+<td class="col-cost">¥5,324</td>
+<td>1.04%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.68%</td>
+<td>¥324</td>
+<td>3.04%</td>
+<td>1.42%</td>
+<td>¥52.77</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>48.21%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc35qam2aaa74apioc2evurv3aezxwabtka.f0.mp4?dis_k=14af75d94dbcfc01ff05c2b870febc1d&dis_t=1772547181&m=46d0088baf5268c3fb63cdd53441b218&sha256=55e7c660584215685f6ca97d8cc7e6bdd4022a6537151d75ea3b0c695d8e34ed">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc35qam2aaa74apioc2evurv3aezxwabtka.f0.mp4?dis_k=14af75d94dbcfc01ff05c2b870febc1d&dis_t=1772547181&m=46d0088baf5268c3fb63cdd53441b218&sha256=55e7c660584215685f6ca97d8cc7e6bdd4022a6537151d75ea3b0c695d8e34ed" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">9</td>
+<td class="shop-cell" title="弥珀遮阳防雨篷布工厂店">弥珀遮阳防雨篷布工厂店</td>
+<td class="product-cell"><span class='product-tag'>防晒防</span></td>
+<td class="col-cost">¥5,007</td>
+<td>0.98%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.81%</td>
+<td>¥26</td>
+<td>2.89%</td>
+<td>5.72%</td>
+<td>¥15.20</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>55.49%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">10</td>
+<td class="shop-cell" title="玲吾玖二">玲吾玖二</td>
+<td class="product-cell"><span class='product-tag'>玲吾玖二大容量健</span></td>
+<td class="col-cost">¥4,911</td>
+<td>0.96%</td>
+<td class="col-gmv"><span class='range-tag range-green'>1-5万</span></td>
+<td>0.53%</td>
+<td>¥200</td>
+<td>2.48%</td>
+<td>4.54%</td>
+<td>¥100.47</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>38.76%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">11</td>
+<td class="shop-cell" title="GOUNOD古诺迪运动装备">GOUNOD古诺迪运动装备</td>
+<td class="product-cell"><span class='product-tag'>保护护膝</span></td>
+<td class="col-cost">¥4,889</td>
+<td>0.95%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.43%</td>
+<td>¥86</td>
+<td>1.26%</td>
+<td>9.08%</td>
+<td>¥52.93</td>
+<td class="col-roi"><span class='range-tag range-orange'>1-2</span></td>
+<td>43.11%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3rqahcaaa6eahyqxomvubvdaeoggaa4ka.f0.mp4?dis_k=671c223b795129c67099458c7f75260b&dis_t=1764146839&m=7c3bdaf36b60e3d693337822dfa72ce9&sha256=92184b045bf7690fa16ddc7fced9b38da5ce30aa30eef6d3f6b923bdc719cc0c">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3rqahcaaa6eahyqxomvubvdaeoggaa4ka.f0.mp4?dis_k=671c223b795129c67099458c7f75260b&dis_t=1764146839&m=7c3bdaf36b60e3d693337822dfa72ce9&sha256=92184b045bf7690fa16ddc7fced9b38da5ce30aa30eef6d3f6b923bdc719cc0c" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">12</td>
+<td class="shop-cell" title="CALLIVEN居家健身">CALLIVEN居家健身</td>
+<td class="product-cell"><span class='product-tag'>CALLIVEN</span></td>
+<td class="col-cost">¥2,958</td>
+<td>0.58%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.36%</td>
+<td>¥36</td>
+<td>2.02%</td>
+<td>11.74%</td>
+<td>¥33.44</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>53.52%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">13</td>
+<td class="shop-cell" title="光威珝琦品牌店">光威珝琦品牌店</td>
+<td class="product-cell"><span class='product-tag'>旅行套装淡</span></td>
+<td class="col-cost">¥2,923</td>
+<td>0.57%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.31%</td>
+<td>¥201</td>
+<td>2.55%</td>
+<td>2.45%</td>
+<td>¥56.11</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>42.43%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">14</td>
+<td class="shop-cell" title="兰老师-青少年体育">兰老师-青少年体育</td>
+<td class="product-cell"><span class='product-tag'>跳绳学</span></td>
+<td class="col-cost">¥2,878</td>
+<td>0.56%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.21%</td>
+<td>¥30</td>
+<td>1.18%</td>
+<td>19.50%</td>
+<td>¥45.03</td>
+<td class="col-roi"><span class='range-tag range-orange'>1-2</span></td>
+<td>62.75%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">15</td>
+<td class="shop-cell" title="OES懒人运动健身">OES懒人运动健身</td>
+<td class="product-cell"><span class='product-tag'>樊少皇推荐OES</span></td>
+<td class="col-cost">¥2,821</td>
+<td>0.55%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.47%</td>
+<td>¥367</td>
+<td>1.24%</td>
+<td>3.00%</td>
+<td>¥38.87</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>49.17%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">16</td>
+<td class="shop-cell" title="懒人运动筋膜环">懒人运动筋膜环</td>
+<td class="product-cell"><span class='product-tag'>ES筋膜环</span></td>
+<td class="col-cost">¥2,598</td>
+<td>0.51%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.40%</td>
+<td>¥84</td>
+<td>1.51%</td>
+<td>11.86%</td>
+<td>¥46.60</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>48.80%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53hyaq2aab6uac44iqyzvbwpqebu7acdka.f0.mp4?dis_k=ca78fb7167f9e552d007fd0e5f416b8c&dis_t=1779508176&m=5e9be474ac80c34e52d5d4400f082aa3">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53hyaq2aab6uac44iqyzvbwpqebu7acdka.f0.mp4?dis_k=ca78fb7167f9e552d007fd0e5f416b8c&dis_t=1779508176&m=5e9be474ac80c34e52d5d4400f082aa3" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">17</td>
+<td class="shop-cell" title="诺迪户外运动">诺迪户外运动</td>
+<td class="product-cell"><span class='product-tag'>保护护膝</span></td>
+<td class="col-cost">¥2,596</td>
+<td>0.51%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.22%</td>
+<td>¥86</td>
+<td>1.43%</td>
+<td>11.46%</td>
+<td>¥77.90</td>
+<td class="col-roi"><span class='range-tag range-orange'>1-2</span></td>
+<td>36.38%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">18</td>
+<td class="shop-cell" title="环芝泉衣帽">环芝泉衣帽</td>
+<td class="product-cell"><span class='product-tag'>运动帽春</span></td>
+<td class="col-cost">¥2,467</td>
+<td>0.48%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.31%</td>
+<td>¥31</td>
+<td>3.04%</td>
+<td>7.73%</td>
+<td>¥27.37</td>
+<td class="col-roi"><span class='range-tag range-orange'>2-3</span></td>
+<td>28.54%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">19</td>
+<td class="shop-cell" title="OES懒人运动健身">OES懒人运动健身</td>
+<td class="product-cell"><span class='product-tag'>樊少皇同款OES</span></td>
+<td class="col-cost">¥2,126</td>
+<td>0.41%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.40%</td>
+<td>¥382</td>
+<td>1.91%</td>
+<td>3.11%</td>
+<td>¥59.32</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>45.52%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53xiataaabtmad2jv4rrurxoqegc5acmca.f0.mp4?dis_k=6c7b6e01795d5dc0c195ab1c662c5223&dis_t=1773997972&m=50cba1a04862bef6da7434ce0ba00f56&sha256=9fb1ed6d87275d9912b99a82fbc37a6a67c7c52f2926105bf0325c14da4d2c27">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53xiataaabtmad2jv4rrurxoqegc5acmca.f0.mp4?dis_k=6c7b6e01795d5dc0c195ab1c662c5223&dis_t=1773997972&m=50cba1a04862bef6da7434ce0ba00f56&sha256=9fb1ed6d87275d9912b99a82fbc37a6a67c7c52f2926105bf0325c14da4d2c27" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">20</td>
+<td class="shop-cell" title="言午YANWUPOLYMER3D打印鞋">言午YANWUPOLYMER3D打印鞋</td>
+<td class="product-cell"><span class='product-tag'>体拖鞋2</span></td>
+<td class="col-cost">¥1,973</td>
+<td>0.38%</td>
+<td class="col-gmv"><span class='range-tag range-green'><1万</span></td>
+<td>0.34%</td>
+<td>¥307</td>
+<td>3.50%</td>
+<td>3.02%</td>
+<td>¥88.87</td>
+<td class="col-roi"><span class='range-tag range-orange'>3-4</span></td>
+<td>32.31%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="tab-content active" id="full">
+<div class="overview-cards">
+<div class="card"><div class="card-label">日均消耗</div><div class="card-value">¥51.3万</div></div>
+<div class="card"><div class="card-label">日均下单金额</div><div class="card-value">¥209.3万</div></div>
+<div class="card"><div class="card-label">下单ROI</div><div class="card-value">4.08</div></div>
+<div class="card"><div class="card-label">CTR</div><div class="card-value">2.11%</div></div>
+<div class="card"><div class="card-label">综合转化率</div><div class="card-value">5.79%</div></div>
+<div class="card"><div class="card-label">竞价CPM</div><div class="card-value">¥40.34</div></div>
+<div class="card"><div class="card-label">下单单价</div><div class="card-value">¥140.2</div></div>
+<div class="card"><div class="card-label">3秒完播率</div><div class="card-value">43.63%</div></div>
+</div>
+<div class="category-section">
+<div class="category-header">
+<h3>运动鞋服</h3>
+<div class="category-metrics">
+<span class="metric-badge">投放商品数: <b>3694</b></span>
+<span class="metric-badge">日均消耗: <b>¥26.6万</b></span>
+<span class="metric-badge">消耗占比: <b>51.8%</b></span>
+<span class="metric-badge">日均GMV: <b>¥143.2万</b></span>
+<span class="metric-badge">GMV占比: <b>68.4%</b></span>
+<span class="metric-badge">整体ROI: <b>5.39</b></span>
+<span class="metric-badge">平均CTR: <b>6.05%</b></span>
+<span class="metric-badge">平均CVR: <b>14.10%</b></span>
+<span class="metric-badge">平均CPM: <b>¥209</b></span>
+</div>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>排名</th><th>视频号</th><th>商品名称</th><th class="highlight-col">日均消耗</th><th>消耗占比</th>
+<th class="highlight-col">日均GMV</th><th>GMV占比</th><th>下单单价</th><th>CTR</th><th>CVR</th>
+<th>CPM</th><th class="highlight-col">ROI</th><th>3秒完播率</th><th>素材</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="rank-cell">1</td>
+<td class="shop-cell" title="SIINSIIN星钥品牌">SIINSIIN星钥品牌</td>
+<td class="product-cell"><span class='product-tag'>直筒裤夏</span></td>
+<td class="col-cost">¥3.2万</td>
+<td>6.28%</td>
+<td class="col-gmv">¥14.9万</td>
+<td>7.13%</td>
+<td>¥270</td>
+<td>2.61%</td>
+<td>7.74%</td>
+<td>¥121.80</td>
+<td class="col-roi">4.63</td>
+<td>43.20%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3amap2aaabuaatrax3nvbwaye7ubqb7ka.f0.mp4?dis_k=17b401533542c583f41961563c49e496&dis_t=1780563028&m=275e43f248f29bea9943ddacca6e1ed6&sha256=dd6d1cdba70922451fd10cf0e97028ba18c8b0ccf42069bdddcd3ac285779b83">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3amap2aaabuaatrax3nvbwaye7ubqb7ka.f0.mp4?dis_k=17b401533542c583f41961563c49e496&dis_t=1780563028&m=275e43f248f29bea9943ddacca6e1ed6&sha256=dd6d1cdba70922451fd10cf0e97028ba18c8b0ccf42069bdddcd3ac285779b83" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">2</td>
+<td class="shop-cell" title="UTO悠途户外装备">UTO悠途户外装备</td>
+<td class="product-cell"><span class='product-tag'>速干T恤女</span></td>
+<td class="col-cost">¥1.8万</td>
+<td>3.49%</td>
+<td class="col-gmv">¥6.1万</td>
+<td>2.92%</td>
+<td>¥146</td>
+<td>3.20%</td>
+<td>5.05%</td>
+<td>¥69.40</td>
+<td class="col-roi">3.41</td>
+<td>39.15%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53yiadqaaaviajrni7rnvbvqqehdbaaoca.f0.mp4?dis_k=9dc30389e8ee9d5fcb50377d413a4263&dis_t=1780458180&m=eb7220d1e0e7546833b0a1dca17c8d5e&sha256=81928be9b59570e4e209797a0e0609b4b798892d6e3ddd10bed6632ab52cf30e">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53yiadqaaaviajrni7rnvbvqqehdbaaoca.f0.mp4?dis_k=9dc30389e8ee9d5fcb50377d413a4263&dis_t=1780458180&m=eb7220d1e0e7546833b0a1dca17c8d5e&sha256=81928be9b59570e4e209797a0e0609b4b798892d6e3ddd10bed6632ab52cf30e" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">3</td>
+<td class="shop-cell" title="KAILASFUGA">KAILASFUGA</td>
+<td class="product-cell"><span class='product-tag'>野跑鞋男</span></td>
+<td class="col-cost">¥1.6万</td>
+<td>3.18%</td>
+<td class="col-gmv">¥9.6万</td>
+<td>4.59%</td>
+<td>¥1,248</td>
+<td>2.91%</td>
+<td>0.94%</td>
+<td>¥60.76</td>
+<td class="col-roi">5.89</td>
+<td>42.91%</td>
+<td class="material-cell">
+                    <div class="img-thumb">
+                        <img src="http://pgdt.gtimg.cn/141/20204/snscosdownload/SZ/reserved/6a20d7f30009dff02e4a762d86f801150000008d00004eec?ck=913c304729914c2aaa98987999573f56&m=913c304729914c2aaa98987999573f56&sha256=8dfcf74d33e7ae63904047450c4247e0c2d81651f4737e479f3417d37ca80cc9" alt="素材">
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">4</td>
+<td class="shop-cell" title="FlowEnergy">FlowEnergy</td>
+<td class="product-cell"><span class='product-tag'>瑜伽裤运</span></td>
+<td class="col-cost">¥1.0万</td>
+<td>2.00%</td>
+<td class="col-gmv">¥3.2万</td>
+<td>1.53%</td>
+<td>¥199</td>
+<td>1.64%</td>
+<td>4.47%</td>
+<td>¥47.47</td>
+<td class="col-roi">3.12</td>
+<td>26.62%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc32uaxsaabwyafukavb5vbxviephkqc6ka.f0.mp4?dis_k=738c7c89348caae9bd7819046dd78b97&dis_t=1779704697&m=00dd8bc8536399304b764c77cb723de5&sha256=1a26ab0405816120ae6a1fb913472e9de782f92ccc41e9108e49863254a834ab">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc32uaxsaabwyafukavb5vbxviephkqc6ka.f0.mp4?dis_k=738c7c89348caae9bd7819046dd78b97&dis_t=1779704697&m=00dd8bc8536399304b764c77cb723de5&sha256=1a26ab0405816120ae6a1fb913472e9de782f92ccc41e9108e49863254a834ab" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">5</td>
+<td class="shop-cell" title="凯乐石户外">凯乐石户外</td>
+<td class="product-cell"><span class='product-tag'>LT冲锋衣</span></td>
+<td class="col-cost">¥9,045</td>
+<td>1.76%</td>
+<td class="col-gmv">¥4.4万</td>
+<td>2.10%</td>
+<td>¥1,933</td>
+<td>2.31%</td>
+<td>0.82%</td>
+<td>¥75.81</td>
+<td class="col-roi">4.85</td>
+<td>37.86%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53ambfcaacayajp4pm4vurqayekebqeuka.f0.mp4?dis_k=d478735846e99843e159d5eb306de3ee&dis_t=1777255945&m=7ea50fb9cfaffc87d74c479cfccd797b&sha256=7242d0be599fd8cfc26df912fc47c595f9100b4a2c552229b651ad7dd0aeb959">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53ambfcaacayajp4pm4vurqayekebqeuka.f0.mp4?dis_k=d478735846e99843e159d5eb306de3ee&dis_t=1777255945&m=7ea50fb9cfaffc87d74c479cfccd797b&sha256=7242d0be599fd8cfc26df912fc47c595f9100b4a2c552229b651ad7dd0aeb959" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">6</td>
+<td class="shop-cell" title="小野和子女装品牌">小野和子女装品牌</td>
+<td class="product-cell"><span class='product-tag'>凉感防晒衬</span></td>
+<td class="col-cost">¥7,496</td>
+<td>1.46%</td>
+<td class="col-gmv">¥3.4万</td>
+<td>1.61%</td>
+<td>¥188</td>
+<td>2.06%</td>
+<td>8.42%</td>
+<td>¥74.06</td>
+<td class="col-roi">4.49</td>
+<td>38.03%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b536yabcaaawyafo4piwfurv5qech3aaeka.f0.mp4?dis_k=a49e0acc577749a5c88a538cb33bbc6a&dis_t=1776830223&m=2af438c32fde553bf5391d3d1f7af6f0&sha256=3997bdb12a82d882f48e90b80a4a332705583deb6a03286b2d9ede855db2af72">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b536yabcaaawyafo4piwfurv5qech3aaeka.f0.mp4?dis_k=a49e0acc577749a5c88a538cb33bbc6a&dis_t=1776830223&m=2af438c32fde553bf5391d3d1f7af6f0&sha256=3997bdb12a82d882f48e90b80a4a332705583deb6a03286b2d9ede855db2af72" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">7</td>
+<td class="shop-cell" title="CAMEL骆驼品牌官方店">CAMEL骆驼品牌官方店</td>
+<td class="product-cell"><span class='product-tag'>原纱防晒衣</span></td>
+<td class="col-cost">¥6,986</td>
+<td>1.36%</td>
+<td class="col-gmv">¥2.9万</td>
+<td>1.40%</td>
+<td>¥194</td>
+<td>2.90%</td>
+<td>3.69%</td>
+<td>¥49.42</td>
+<td class="col-roi">4.21</td>
+<td>29.78%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3pyboiaacwmai3uj34rubq7qe4r7afzca.f0.mp4?dis_k=deb8286ee7a31a1a0ad7647a602b7d52&dis_t=1748593116&sha256=dd40a528ad19cdd1dc596d694cb572208bb7ccb82ca9c908d75d27e87d316ef7&m=3c93dac5b2dcd42ae58d0bb28802a7b9">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3pyboiaacwmai3uj34rubq7qe4r7afzca.f0.mp4?dis_k=deb8286ee7a31a1a0ad7647a602b7d52&dis_t=1748593116&sha256=dd40a528ad19cdd1dc596d694cb572208bb7ccb82ca9c908d75d27e87d316ef7&m=3c93dac5b2dcd42ae58d0bb28802a7b9" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">8</td>
+<td class="shop-cell" title="FILA官方运动店">FILA官方运动店</td>
+<td class="product-cell"><span class='product-tag'>新款防晒凉</span></td>
+<td class="col-cost">¥6,927</td>
+<td>1.35%</td>
+<td class="col-gmv">¥5.3万</td>
+<td>2.54%</td>
+<td>¥455</td>
+<td>1.93%</td>
+<td>3.76%</td>
+<td>¥43.00</td>
+<td class="col-roi">7.66</td>
+<td>25.78%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">9</td>
+<td class="shop-cell" title="SINSIN服饰品牌">SINSIN服饰品牌</td>
+<td class="product-cell"><span class='product-tag'>色伞裤2</span></td>
+<td class="col-cost">¥6,762</td>
+<td>1.32%</td>
+<td class="col-gmv">¥3.6万</td>
+<td>1.70%</td>
+<td>¥222</td>
+<td>2.39%</td>
+<td>8.94%</td>
+<td>¥93.57</td>
+<td class="col-roi">5.27</td>
+<td>25.61%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53rqafiaaaoyalcrqcgnvbvdaeksgaavca.f0.mp4?dis_k=733c82637eff77a3dabe52095aaa7005&dis_t=1778574845&m=8f45a2d2219ab1a8de614f4c1033a2b5">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53rqafiaaaoyalcrqcgnvbvdaeksgaavca.f0.mp4?dis_k=733c82637eff77a3dabe52095aaa7005&dis_t=1778574845&m=8f45a2d2219ab1a8de614f4c1033a2b5" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">10</td>
+<td class="shop-cell" title="FILA总部店">FILA总部店</td>
+<td class="product-cell"><span class='product-tag'>FILA 斐乐官</span></td>
+<td class="col-cost">¥5,825</td>
+<td>1.14%</td>
+<td class="col-gmv">¥3.3万</td>
+<td>1.56%</td>
+<td>¥643</td>
+<td>1.47%</td>
+<td>18.44%</td>
+<td>¥29.31</td>
+<td class="col-roi">5.62</td>
+<td>32.58%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">11</td>
+<td class="shop-cell" title="小野和子服饰品牌">小野和子服饰品牌</td>
+<td class="product-cell"><span class='product-tag'>新款防晒口</span></td>
+<td class="col-cost">¥5,553</td>
+<td>1.08%</td>
+<td class="col-gmv">¥1.6万</td>
+<td>0.78%</td>
+<td>¥83</td>
+<td>2.24%</td>
+<td>11.99%</td>
+<td>¥77.17</td>
+<td class="col-roi">2.95</td>
+<td>28.62%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53rycukaaffealkwg47zur7dqeiwhakrka.f0.mp4?dis_k=349a2eae74ac41dec3220709635c13ff&dis_t=1779524457&m=9d8935390b7fef6f4521aff7c7f07231&sha256=b5fe5e09aff06bc06423edd93173787841d59a2c82d503066d0058ec0220fb84">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53rycukaaffealkwg47zur7dqeiwhakrka.f0.mp4?dis_k=349a2eae74ac41dec3220709635c13ff&dis_t=1779524457&m=9d8935390b7fef6f4521aff7c7f07231&sha256=b5fe5e09aff06bc06423edd93173787841d59a2c82d503066d0058ec0220fb84" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">12</td>
+<td class="shop-cell" title="火火品牌外贸服饰">火火品牌外贸服饰</td>
+<td class="product-cell"><span class='product-tag'>速干裤男</span></td>
+<td class="col-cost">¥5,318</td>
+<td>1.04%</td>
+<td class="col-gmv">¥5.3万</td>
+<td>2.53%</td>
+<td>¥41</td>
+<td>5.45%</td>
+<td>19.95%</td>
+<td>¥45.31</td>
+<td class="col-roi">9.97</td>
+<td>28.05%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">13</td>
+<td class="shop-cell" title="ONEMIX玩觅旗舰店">ONEMIX玩觅旗舰店</td>
+<td class="product-cell"><span class='product-tag'>跑步鞋男</span></td>
+<td class="col-cost">¥5,016</td>
+<td>0.98%</td>
+<td class="col-gmv">¥2.5万</td>
+<td>1.20%</td>
+<td>¥429</td>
+<td>2.74%</td>
+<td>2.20%</td>
+<td>¥52.00</td>
+<td class="col-roi">4.99</td>
+<td>42.12%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3uuaasaaaxmae55kkzjubvjiebgsqacka.f0.mp4?dis_k=49c3ba5ecb760ac5aef615985b386af5&dis_t=1752311226&sha256=1f630c0ea62f758b538589cb84eee2d4deb3f6728d4247f92fdb8ec7de3b1449&m=8a4792d7151238a90a696c0cf61cc623">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3uuaasaaaxmae55kkzjubvjiebgsqacka.f0.mp4?dis_k=49c3ba5ecb760ac5aef615985b386af5&dis_t=1752311226&sha256=1f630c0ea62f758b538589cb84eee2d4deb3f6728d4247f92fdb8ec7de3b1449&m=8a4792d7151238a90a696c0cf61cc623" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">14</td>
+<td class="shop-cell" title="UTO悠途">UTO悠途</td>
+<td class="product-cell"><span class='product-tag'>速干T恤女</span></td>
+<td class="col-cost">¥4,641</td>
+<td>0.90%</td>
+<td class="col-gmv">¥1.8万</td>
+<td>0.85%</td>
+<td>¥206</td>
+<td>2.54%</td>
+<td>3.06%</td>
+<td>¥41.82</td>
+<td class="col-roi">3.84</td>
+<td>41.21%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">15</td>
+<td class="shop-cell" title="FILAFUSION官方店">FILAFUSION官方店</td>
+<td class="product-cell"><span class='product-tag'>老爹鞋女</span></td>
+<td class="col-cost">¥4,609</td>
+<td>0.90%</td>
+<td class="col-gmv">¥3.1万</td>
+<td>1.49%</td>
+<td>¥537</td>
+<td>1.72%</td>
+<td>1.54%</td>
+<td>¥21.51</td>
+<td class="col-roi">6.79</td>
+<td>26.01%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">16</td>
+<td class="shop-cell" title="FILA官方店">FILA官方店</td>
+<td class="product-cell"><span class='product-tag'>气凉鞋|</span></td>
+<td class="col-cost">¥4,593</td>
+<td>0.89%</td>
+<td class="col-gmv">¥3.4万</td>
+<td>1.61%</td>
+<td>¥526</td>
+<td>2.46%</td>
+<td>1.63%</td>
+<td>¥31.44</td>
+<td class="col-roi">7.33</td>
+<td>28.96%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">17</td>
+<td class="shop-cell" title="adidas官方旗舰店">adidas官方旗舰店</td>
+<td class="product-cell"><span class='product-tag'>长袖套装男</span></td>
+<td class="col-cost">¥4,392</td>
+<td>0.86%</td>
+<td class="col-gmv">¥2.1万</td>
+<td>1.01%</td>
+<td>¥329</td>
+<td>1.88%</td>
+<td>2.72%</td>
+<td>¥34.83</td>
+<td class="col-roi">4.83</td>
+<td>27.32%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">18</td>
+<td class="shop-cell" title="ONEMIX玩觅官方旗舰店">ONEMIX玩觅官方旗舰店</td>
+<td class="product-cell"><span class='product-tag'>运动鞋女</span></td>
+<td class="col-cost">¥4,288</td>
+<td>0.84%</td>
+<td class="col-gmv">¥2.0万</td>
+<td>0.95%</td>
+<td>¥453</td>
+<td>2.26%</td>
+<td>1.68%</td>
+<td>¥37.00</td>
+<td class="col-roi">4.63</td>
+<td>41.75%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">19</td>
+<td class="shop-cell" title="凯乐石鞋靴店">凯乐石鞋靴店</td>
+<td class="product-cell"><span class='product-tag'>跑山鞋K</span></td>
+<td class="col-cost">¥4,142</td>
+<td>0.81%</td>
+<td class="col-gmv">¥2.0万</td>
+<td>0.97%</td>
+<td>¥1,411</td>
+<td>2.97%</td>
+<td>0.47%</td>
+<td>¥39.83</td>
+<td class="col-roi">4.91</td>
+<td>42.21%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc344ajeaaalyapj5yv75vbvzyesltqbesa.f0.mp4?dis_k=2995b811e9d50989ba530a07f06ca7c3&dis_t=1779787451&m=aad317ac24ca297a09f53535a3564228">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc344ajeaaalyapj5yv75vbvzyesltqbesa.f0.mp4?dis_k=2995b811e9d50989ba530a07f06ca7c3&dis_t=1779787451&m=aad317ac24ca297a09f53535a3564228" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">20</td>
+<td class="shop-cell" title="FILA斐乐广州店">FILA斐乐广州店</td>
+<td class="product-cell"><span class='product-tag'>短袖T恤F</span></td>
+<td class="col-cost">¥3,935</td>
+<td>0.77%</td>
+<td class="col-gmv">¥2.4万</td>
+<td>1.16%</td>
+<td>¥476</td>
+<td>1.72%</td>
+<td>2.88%</td>
+<td>¥38.29</td>
+<td class="col-roi">6.15</td>
+<td>24.36%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="category-section">
+<div class="category-header">
+<h3>运动用品</h3>
+<div class="category-metrics">
+<span class="metric-badge">投放商品数: <b>3187</b></span>
+<span class="metric-badge">日均消耗: <b>¥19.1万</b></span>
+<span class="metric-badge">消耗占比: <b>37.2%</b></span>
+<span class="metric-badge">日均GMV: <b>¥51.7万</b></span>
+<span class="metric-badge">GMV占比: <b>24.7%</b></span>
+<span class="metric-badge">整体ROI: <b>2.71</b></span>
+<span class="metric-badge">平均CTR: <b>5.66%</b></span>
+<span class="metric-badge">平均CVR: <b>13.78%</b></span>
+<span class="metric-badge">平均CPM: <b>¥179</b></span>
+</div>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>排名</th><th>视频号</th><th>商品名称</th><th class="highlight-col">日均消耗</th><th>消耗占比</th>
+<th class="highlight-col">日均GMV</th><th>GMV占比</th><th>下单单价</th><th>CTR</th><th>CVR</th>
+<th>CPM</th><th class="highlight-col">ROI</th><th>3秒完播率</th><th>素材</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="rank-cell">1</td>
+<td class="shop-cell" title="康舒护具">康舒护具</td>
+<td class="product-cell"><span class='product-tag'>护膝关</span></td>
+<td class="col-cost">¥2.4万</td>
+<td>4.71%</td>
+<td class="col-gmv">¥5.6万</td>
+<td>2.65%</td>
+<td>¥96</td>
+<td>1.15%</td>
+<td>5.40%</td>
+<td>¥26.25</td>
+<td class="col-roi">2.30</td>
+<td>55.80%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">2</td>
+<td class="shop-cell" title="懒人运动筋膜环">懒人运动筋膜环</td>
+<td class="product-cell"><span class='product-tag'>运动筋膜环</span></td>
+<td class="col-cost">¥1.4万</td>
+<td>2.75%</td>
+<td class="col-gmv">¥4.6万</td>
+<td>2.20%</td>
+<td>¥86</td>
+<td>1.95%</td>
+<td>6.54%</td>
+<td>¥33.88</td>
+<td class="col-roi">3.26</td>
+<td>55.04%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">3</td>
+<td class="shop-cell" title="OES深弧运动健腹">OES深弧运动健腹</td>
+<td class="product-cell"><span class='product-tag'>ES健腹机</span></td>
+<td class="col-cost">¥1.4万</td>
+<td>2.66%</td>
+<td class="col-gmv">¥4.5万</td>
+<td>2.16%</td>
+<td>¥329</td>
+<td>1.22%</td>
+<td>2.51%</td>
+<td>¥36.30</td>
+<td class="col-roi">3.31</td>
+<td>44.70%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">4</td>
+<td class="shop-cell" title="太力户外帐篷店">太力户外帐篷店</td>
+<td class="product-cell"><span class='product-tag'>充气帐篷2</span></td>
+<td class="col-cost">¥1.2万</td>
+<td>2.32%</td>
+<td class="col-gmv">¥2.7万</td>
+<td>1.28%</td>
+<td>¥1,595</td>
+<td>2.54%</td>
+<td>0.50%</td>
+<td>¥89.49</td>
+<td class="col-roi">2.26</td>
+<td>41.83%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53aicl6aaem4acmaolk5ur4aqex4bajp2a.f0.mp4?dis_k=4057e936115761ebcf210ce91c5bd465&dis_t=1775213768&m=9789f2756b54bdeb17d827dc273a2aed&sha256=4d9bcb2dbab06c1bcd3f7d32f26ef22ee9ad74cdeab0b9a18a2a1b9c30d40cb3">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53aicl6aaem4acmaolk5ur4aqex4bajp2a.f0.mp4?dis_k=4057e936115761ebcf210ce91c5bd465&dis_t=1775213768&m=9789f2756b54bdeb17d827dc273a2aed&sha256=4d9bcb2dbab06c1bcd3f7d32f26ef22ee9ad74cdeab0b9a18a2a1b9c30d40cb3" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">5</td>
+<td class="shop-cell" title="康舒运动店">康舒运动店</td>
+<td class="product-cell"><span class='product-tag'>髌骨带男夏季专业</span></td>
+<td class="col-cost">¥1.1万</td>
+<td>2.18%</td>
+<td class="col-gmv">¥2.7万</td>
+<td>1.31%</td>
+<td>¥111</td>
+<td>2.04%</td>
+<td>8.63%</td>
+<td>¥81.53</td>
+<td class="col-roi">2.45</td>
+<td>33.39%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">6</td>
+<td class="shop-cell" title="专注护腰三十年">专注护腰三十年</td>
+<td class="product-cell"><span class='product-tag'>ES腰部</span></td>
+<td class="col-cost">¥7,282</td>
+<td>1.42%</td>
+<td class="col-gmv">¥2.1万</td>
+<td>0.99%</td>
+<td>¥68</td>
+<td>1.41%</td>
+<td>7.79%</td>
+<td>¥26.80</td>
+<td class="col-roi">2.83</td>
+<td>39.38%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53baabeaaa5iaomexrenubucaecieaaesa.f0.mp4?dis_k=dac9eb31b2965c3871a7eb53f4c39e7b&dis_t=1780660909&m=237b54a1f6d2f113094a503362290636&sha256=ffe4c9f6f3a00ed4af5982feee465fcde1c5802d31737aa197e54b5a62a5f2b1">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53baabeaaa5iaomexrenubucaecieaaesa.f0.mp4?dis_k=dac9eb31b2965c3871a7eb53f4c39e7b&dis_t=1780660909&m=237b54a1f6d2f113094a503362290636&sha256=ffe4c9f6f3a00ed4af5982feee465fcde1c5802d31737aa197e54b5a62a5f2b1" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">7</td>
+<td class="shop-cell" title="兰老师-青少年体育">兰老师-青少年体育</td>
+<td class="product-cell"><span class='product-tag'>学生跳绳考</span></td>
+<td class="col-cost">¥6,617</td>
+<td>1.29%</td>
+<td class="col-gmv">¥1.1万</td>
+<td>0.52%</td>
+<td>¥31</td>
+<td>1.61%</td>
+<td>8.83%</td>
+<td>¥26.95</td>
+<td class="col-roi">1.64</td>
+<td>41.13%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">8</td>
+<td class="shop-cell" title="OES专注腰部护理">OES专注腰部护理</td>
+<td class="product-cell"><span class='product-tag'>腰部</span></td>
+<td class="col-cost">¥5,324</td>
+<td>1.04%</td>
+<td class="col-gmv">¥1.4万</td>
+<td>0.68%</td>
+<td>¥324</td>
+<td>3.04%</td>
+<td>1.42%</td>
+<td>¥52.77</td>
+<td class="col-roi">2.65</td>
+<td>48.21%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc35qam2aaa74apioc2evurv3aezxwabtka.f0.mp4?dis_k=14af75d94dbcfc01ff05c2b870febc1d&dis_t=1772547181&m=46d0088baf5268c3fb63cdd53441b218&sha256=55e7c660584215685f6ca97d8cc7e6bdd4022a6537151d75ea3b0c695d8e34ed">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc35qam2aaa74apioc2evurv3aezxwabtka.f0.mp4?dis_k=14af75d94dbcfc01ff05c2b870febc1d&dis_t=1772547181&m=46d0088baf5268c3fb63cdd53441b218&sha256=55e7c660584215685f6ca97d8cc7e6bdd4022a6537151d75ea3b0c695d8e34ed" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">9</td>
+<td class="shop-cell" title="弥珀遮阳防雨篷布工厂店">弥珀遮阳防雨篷布工厂店</td>
+<td class="product-cell"><span class='product-tag'>防晒防</span></td>
+<td class="col-cost">¥5,007</td>
+<td>0.98%</td>
+<td class="col-gmv">¥1.7万</td>
+<td>0.81%</td>
+<td>¥26</td>
+<td>2.89%</td>
+<td>5.72%</td>
+<td>¥15.20</td>
+<td class="col-roi">3.39</td>
+<td>55.49%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">10</td>
+<td class="shop-cell" title="玲吾玖二">玲吾玖二</td>
+<td class="product-cell"><span class='product-tag'>玲吾玖二大容量健</span></td>
+<td class="col-cost">¥4,911</td>
+<td>0.96%</td>
+<td class="col-gmv">¥1.1万</td>
+<td>0.53%</td>
+<td>¥200</td>
+<td>2.48%</td>
+<td>4.54%</td>
+<td>¥100.47</td>
+<td class="col-roi">2.27</td>
+<td>38.76%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">11</td>
+<td class="shop-cell" title="GOUNOD古诺迪运动装备">GOUNOD古诺迪运动装备</td>
+<td class="product-cell"><span class='product-tag'>保护护膝</span></td>
+<td class="col-cost">¥4,889</td>
+<td>0.95%</td>
+<td class="col-gmv">¥9,083</td>
+<td>0.43%</td>
+<td>¥86</td>
+<td>1.26%</td>
+<td>9.08%</td>
+<td>¥52.93</td>
+<td class="col-roi">1.86</td>
+<td>43.11%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0bc3rqahcaaa6eahyqxomvubvdaeoggaa4ka.f0.mp4?dis_k=671c223b795129c67099458c7f75260b&dis_t=1764146839&m=7c3bdaf36b60e3d693337822dfa72ce9&sha256=92184b045bf7690fa16ddc7fced9b38da5ce30aa30eef6d3f6b923bdc719cc0c">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0bc3rqahcaaa6eahyqxomvubvdaeoggaa4ka.f0.mp4?dis_k=671c223b795129c67099458c7f75260b&dis_t=1764146839&m=7c3bdaf36b60e3d693337822dfa72ce9&sha256=92184b045bf7690fa16ddc7fced9b38da5ce30aa30eef6d3f6b923bdc719cc0c" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">12</td>
+<td class="shop-cell" title="CALLIVEN居家健身">CALLIVEN居家健身</td>
+<td class="product-cell"><span class='product-tag'>CALLIVEN</span></td>
+<td class="col-cost">¥2,958</td>
+<td>0.58%</td>
+<td class="col-gmv">¥7,514</td>
+<td>0.36%</td>
+<td>¥36</td>
+<td>2.02%</td>
+<td>11.74%</td>
+<td>¥33.44</td>
+<td class="col-roi">2.54</td>
+<td>53.52%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">13</td>
+<td class="shop-cell" title="光威珝琦品牌店">光威珝琦品牌店</td>
+<td class="product-cell"><span class='product-tag'>旅行套装淡</span></td>
+<td class="col-cost">¥2,923</td>
+<td>0.57%</td>
+<td class="col-gmv">¥6,537</td>
+<td>0.31%</td>
+<td>¥201</td>
+<td>2.55%</td>
+<td>2.45%</td>
+<td>¥56.11</td>
+<td class="col-roi">2.24</td>
+<td>42.43%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">14</td>
+<td class="shop-cell" title="兰老师-青少年体育">兰老师-青少年体育</td>
+<td class="product-cell"><span class='product-tag'>跳绳学</span></td>
+<td class="col-cost">¥2,878</td>
+<td>0.56%</td>
+<td class="col-gmv">¥4,459</td>
+<td>0.21%</td>
+<td>¥30</td>
+<td>1.18%</td>
+<td>19.50%</td>
+<td>¥45.03</td>
+<td class="col-roi">1.55</td>
+<td>62.75%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">15</td>
+<td class="shop-cell" title="OES懒人运动健身">OES懒人运动健身</td>
+<td class="product-cell"><span class='product-tag'>樊少皇推荐OES</span></td>
+<td class="col-cost">¥2,821</td>
+<td>0.55%</td>
+<td class="col-gmv">¥9,850</td>
+<td>0.47%</td>
+<td>¥367</td>
+<td>1.24%</td>
+<td>3.00%</td>
+<td>¥38.87</td>
+<td class="col-roi">3.49</td>
+<td>49.17%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">16</td>
+<td class="shop-cell" title="懒人运动筋膜环">懒人运动筋膜环</td>
+<td class="product-cell"><span class='product-tag'>ES筋膜环</span></td>
+<td class="col-cost">¥2,598</td>
+<td>0.51%</td>
+<td class="col-gmv">¥8,384</td>
+<td>0.40%</td>
+<td>¥84</td>
+<td>1.51%</td>
+<td>11.86%</td>
+<td>¥46.60</td>
+<td class="col-roi">3.23</td>
+<td>48.80%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53hyaq2aab6uac44iqyzvbwpqebu7acdka.f0.mp4?dis_k=ca78fb7167f9e552d007fd0e5f416b8c&dis_t=1779508176&m=5e9be474ac80c34e52d5d4400f082aa3">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53hyaq2aab6uac44iqyzvbwpqebu7acdka.f0.mp4?dis_k=ca78fb7167f9e552d007fd0e5f416b8c&dis_t=1779508176&m=5e9be474ac80c34e52d5d4400f082aa3" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">17</td>
+<td class="shop-cell" title="诺迪户外运动">诺迪户外运动</td>
+<td class="product-cell"><span class='product-tag'>保护护膝</span></td>
+<td class="col-cost">¥2,596</td>
+<td>0.51%</td>
+<td class="col-gmv">¥4,699</td>
+<td>0.22%</td>
+<td>¥86</td>
+<td>1.43%</td>
+<td>11.46%</td>
+<td>¥77.90</td>
+<td class="col-roi">1.81</td>
+<td>36.38%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">18</td>
+<td class="shop-cell" title="环芝泉衣帽">环芝泉衣帽</td>
+<td class="product-cell"><span class='product-tag'>运动帽春</span></td>
+<td class="col-cost">¥2,467</td>
+<td>0.48%</td>
+<td class="col-gmv">¥6,467</td>
+<td>0.31%</td>
+<td>¥31</td>
+<td>3.04%</td>
+<td>7.73%</td>
+<td>¥27.37</td>
+<td class="col-roi">2.62</td>
+<td>28.54%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">19</td>
+<td class="shop-cell" title="OES懒人运动健身">OES懒人运动健身</td>
+<td class="product-cell"><span class='product-tag'>樊少皇同款OES</span></td>
+<td class="col-cost">¥2,126</td>
+<td>0.41%</td>
+<td class="col-gmv">¥8,302</td>
+<td>0.40%</td>
+<td>¥382</td>
+<td>1.91%</td>
+<td>3.11%</td>
+<td>¥59.32</td>
+<td class="col-roi">3.91</td>
+<td>45.52%</td>
+<td class="material-cell">
+                    <div class="video-thumb" data-video="http://adsmind.gdtimg.com/ads_svp_video__0b53xiataaabtmad2jv4rrurxoqegc5acmca.f0.mp4?dis_k=6c7b6e01795d5dc0c195ab1c662c5223&dis_t=1773997972&m=50cba1a04862bef6da7434ce0ba00f56&sha256=9fb1ed6d87275d9912b99a82fbc37a6a67c7c52f2926105bf0325c14da4d2c27">
+                        <video src="http://adsmind.gdtimg.com/ads_svp_video__0b53xiataaabtmad2jv4rrurxoqegc5acmca.f0.mp4?dis_k=6c7b6e01795d5dc0c195ab1c662c5223&dis_t=1773997972&m=50cba1a04862bef6da7434ce0ba00f56&sha256=9fb1ed6d87275d9912b99a82fbc37a6a67c7c52f2926105bf0325c14da4d2c27" muted preload="metadata" class="thumb-video"></video>
+                        <div class="play-icon">▶</div>
+                    </div>
+                </td>
+</tr>
+<tr>
+<td class="rank-cell">20</td>
+<td class="shop-cell" title="言午YANWUPOLYMER3D打印鞋">言午YANWUPOLYMER3D打印鞋</td>
+<td class="product-cell"><span class='product-tag'>体拖鞋2</span></td>
+<td class="col-cost">¥1,973</td>
+<td>0.38%</td>
+<td class="col-gmv">¥7,189</td>
+<td>0.34%</td>
+<td>¥307</td>
+<td>3.50%</td>
+<td>3.02%</td>
+<td>¥88.87</td>
+<td class="col-roi">3.64</td>
+<td>32.31%</td>
+<td class="material-cell">
+<div class="img-thumb" style="background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#999">无素材</div>
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="footer">
+<p>运动户外品类周报 · 自动生成于 2026-06-12 · 数据仅供内部参考</p>
+<p style="margin-top: 8px;">数据取数链接：<a href="https://adata.woa.com/bi/view/9829?s=bCIJG" target="_blank">https://adata.woa.com/bi/view/9829?s=bCIJG</a></p>
+</div>
+</div>
+
+<div class="video-modal" id="videoModal">
+<div class="video-modal-content">
+<button class="video-modal-close" onclick="closeVideo()">✕</button>
+<video id="modalVideo" controls autoplay></video>
+</div>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.version-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+document.querySelectorAll('.video-thumb').forEach(thumb => {
+    const video = thumb.querySelector('.thumb-video');
+    
+    thumb.addEventListener('mouseenter', () => {
+        video.currentTime = 0;
+        video.play().catch(e => {});
+        thumb.querySelector('.play-icon').style.opacity = '0';
+    });
+    
+    thumb.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+        thumb.querySelector('.play-icon').style.opacity = '1';
+    });
+    
+    thumb.addEventListener('click', () => {
+        const videoUrl = thumb.getAttribute('data-video');
+        openVideo(videoUrl);
+    });
+});
+
+function openVideo(url) {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('modalVideo');
+    video.src = url;
+    modal.classList.add('active');
+    video.play().catch(e => {});
+}
+
+function closeVideo() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('modalVideo');
+    video.pause();
+    video.src = '';
+    modal.classList.remove('active');
+}
+
+document.getElementById('videoModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeVideo();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVideo();
+});
+</script>
+</body>
+</html>
