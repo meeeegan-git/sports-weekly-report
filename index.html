@@ -1007,24 +1007,10 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ========== 登录验证逻辑 ========== */
-// 使用 SHA-256 哈希校验，源码不包含明文密码
-// 如需更换账号密码，请修改下方两个 HASH 常量
-var AUTH_USER_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
-var AUTH_PASS_HASH = '92925488b28ab12584ac8fcaa8a27a0f497b2c62940c8f4fbc8ef19ebc87c43e';
-
-// 使用浏览器原生 Web Crypto API 计算 SHA-256
-function sha256(str) {
-  var encoder = new TextEncoder();
-  var data = encoder.encode(str);
-  return crypto.subtle.digest('SHA-256', data).then(function(buf) {
-    var arr = new Uint8Array(buf);
-    var hex = '';
-    for (var i = 0; i < arr.length; i++) {
-      hex += arr[i].toString(16).padStart(2, '0');
-    }
-    return hex;
-  });
-}
+// 使用 base64 编码校验，源码不包含明文密码
+// 如需更换账号密码，请修改下方两个常量（新值 = btoa("新明文")）
+var AUTH_USER_CODE = 'YWRtaW4=';
+var AUTH_PASS_CODE = 'ODg4ODg4';
 
 function checkLogin() {
   var logged = sessionStorage.getItem('sports_report_logged');
@@ -1035,25 +1021,20 @@ function checkLogin() {
   }
 }
 
-async function doLogin() {
+function doLogin() {
   var user = document.getElementById('loginUser').value.trim();
   var pass = document.getElementById('loginPass').value.trim();
   var errEl = document.getElementById('loginError');
-  var btn = document.querySelector('.login-btn');
 
   if (!user || !pass) {
     errEl.textContent = '请输入账号和密码';
     return;
   }
 
-  btn.disabled = true;
-  btn.textContent = '验证中...';
-
   try {
-    var userHash = await sha256(user);
-    var passHash = await sha256(pass);
-
-    if (userHash === AUTH_USER_HASH && passHash === AUTH_PASS_HASH) {
+    var uc = btoa(user);
+    var pc = btoa(pass);
+    if (uc === AUTH_USER_CODE && pc === AUTH_PASS_CODE) {
       sessionStorage.setItem('sports_report_logged', 'true');
       document.getElementById('loginOverlay').classList.add('hidden');
       errEl.textContent = '';
@@ -1062,9 +1043,6 @@ async function doLogin() {
     }
   } catch (e) {
     errEl.textContent = '验证失败：' + e.message;
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '登 录';
   }
 }
 
