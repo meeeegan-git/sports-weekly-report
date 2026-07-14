@@ -5,3 +5,7 @@ __pycache__/
 
 # IDE 配置（Codebuddy 项目数据不提交）
 .codebuddy/
+
+# 大文件素材数据（超出 GitHub 限制）
+0612运动户外素材.xlsx
+0713运动户外素材数据.xlsx.xlsx
