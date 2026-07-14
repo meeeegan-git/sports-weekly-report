@@ -148,8 +148,7 @@ td.col-roi { font-weight: 700; color: #e65100; font-size: 14px; }
       <input type="password" id="loginPass" placeholder="请输入密码" autocomplete="current-password">
     </div>
     <button class="login-btn" onclick="doLogin()">登 录</button>
-    <div class="error-msg" id="loginError" style="color:#e53e3e;margin-top:8px;"></div>
-    <div style="text-align:center;font-size:11px;color:#a0aec0;margin-top:6px;">当前版本：v3（base64 验证）</div>
+    <div class="error-msg" id="loginError"></div>
   </div>
 </div>
 
@@ -999,9 +998,12 @@ function closeVideo() {
     modal.classList.remove('active');
 }
 
-document.getElementById('videoModal').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeVideo();
-});
+var __videoModalEl = document.getElementById('videoModal');
+if (__videoModalEl) {
+    __videoModalEl.addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeVideo();
+    });
+}
 
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeVideo();
