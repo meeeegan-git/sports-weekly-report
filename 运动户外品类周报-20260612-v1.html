@@ -7,6 +7,41 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; min-height: 100vh; }
+
+/* ========== 登录弹窗 ========== */
+.login-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+  z-index: 9999; display: flex; align-items: center; justify-content: center;
+}
+.login-overlay.hidden { display: none; }
+.login-box {
+  background: white; border-radius: 16px; padding: 40px; width: 400px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center;
+}
+.login-box h2 { font-size: 24px; margin-bottom: 8px; color: #1a1a1a; }
+.login-box .subtitle { color: #888; font-size: 14px; margin-bottom: 28px; }
+.login-box .field { text-align: left; margin-bottom: 18px; }
+.login-box .field label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; font-weight: 500; }
+.login-box .field input {
+  width: 100%; padding: 12px 14px; border: 2px solid #e0e0e0; border-radius: 10px;
+  font-size: 15px; outline: none; transition: border-color 0.2s;
+}
+.login-box .field input:focus { border-color: #1a73e8; }
+.login-box .login-btn {
+  width: 100%; padding: 14px; background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+  color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 600;
+  cursor: pointer; margin-top: 6px; transition: opacity 0.2s;
+}
+.login-box .login-btn:hover { opacity: 0.9; }
+.login-box .error-msg { color: #d32f2f; font-size: 13px; margin-top: 12px; min-height: 20px; }
+.logout-btn {
+  position: absolute; top: 20px; left: 30px; 
+  background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4);
+  padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; 
+  transition: all 0.3s; font-weight: 500;
+}
+.logout-btn:hover { background: rgba(255,255,255,0.3); }
 .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
 .header { background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); color: white; padding: 30px 40px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(26,115,232,0.3); }
 .header { position: relative; }
@@ -98,8 +133,28 @@ td.col-roi { font-weight: 700; color: #e65100; font-size: 14px; }
 </style>
 </head>
 <body>
+
+<!-- 登录弹窗 -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <h2>🔐 运动户外品类周报</h2>
+    <p class="subtitle">请输入账号密码访问</p>
+    <div class="field">
+      <label>账号</label>
+      <input type="text" id="loginUser" placeholder="请输入账号" autocomplete="username">
+    </div>
+    <div class="field">
+      <label>密码</label>
+      <input type="password" id="loginPass" placeholder="请输入密码" autocomplete="current-password">
+    </div>
+    <button class="login-btn" onclick="doLogin()">登 录</button>
+    <div class="error-msg" id="loginError"></div>
+  </div>
+</div>
+
 <div class="container">
 <div class="header">
+<button class="logout-btn" onclick="doLogout()">退出登录</button>
 <h1>🏃 运动户外品类周报</h1>
 <p>数据周期：2026年6月6日 - 2026年6月12日 | 数据来源：DPA投放数据</p>
 <div class="version-switch">
@@ -1854,6 +1909,55 @@ document.getElementById('videoModal').addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeVideo();
 });
+
+/* ========== 登录验证逻辑 ========== */
+// 在这里修改账号密码
+var AUTH_USER = 'admin';
+var AUTH_PASS = 'sports2026';
+
+function checkLogin() {
+  var logged = sessionStorage.getItem('sports_report_logged');
+  if (logged === 'true') {
+    document.getElementById('loginOverlay').classList.add('hidden');
+  } else {
+    document.getElementById('loginOverlay').classList.remove('hidden');
+  }
+}
+
+function doLogin() {
+  var user = document.getElementById('loginUser').value.trim();
+  var pass = document.getElementById('loginPass').value.trim();
+  var errEl = document.getElementById('loginError');
+
+  if (!user || !pass) {
+    errEl.textContent = '请输入账号和密码';
+    return;
+  }
+
+  if (user === AUTH_USER && pass === AUTH_PASS) {
+    sessionStorage.setItem('sports_report_logged', 'true');
+    document.getElementById('loginOverlay').classList.add('hidden');
+    errEl.textContent = '';
+  } else {
+    errEl.textContent = '账号或密码错误，请重试';
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('sports_report_logged');
+  document.getElementById('loginOverlay').classList.remove('hidden');
+}
+
+// 回车键触发登录
+document.getElementById('loginPass').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+document.getElementById('loginUser').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('loginPass').focus();
+});
+
+// 页面加载时检查登录状态
+checkLogin();
 </script>
 </body>
 </html>
